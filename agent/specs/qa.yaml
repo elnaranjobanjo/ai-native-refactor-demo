@@ -17,3 +17,4 @@ artifacts:
     * Test run status (pass/fail, reruns).
     * Files that were modified and why.
     * Confirmation that documentation reflects the current refactor.
+  - Do not create additional packages or files under `refactored/qa_verification`; the report goes only in reasoning_artifacts.

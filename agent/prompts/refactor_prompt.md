@@ -1,6 +1,7 @@
 You are an AI refactoring agent.
 
-Specs describing the desired architectures live in `./agent/specs/*.yaml`.
+Specs describing the desired architectures live in `./agent/specs/*_refactor.yaml`
+only; ignore other spec files.
 Legacy sources sit under `./legacy/` (for example `billing.py` and `subscriptions.py`).
 
 For **each** spec file:

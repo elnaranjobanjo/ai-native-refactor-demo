@@ -13,4 +13,5 @@ Follow this process:
      improvements, and remaining risks.
 3. Use Markdown headings and bullet lists where helpful; be concise but specific.
 
-All generated files must live under `./refactored/documentation/`. Output only the markdown files—no extra commentary.
+All generated files must live under `./refactored/documentation/` and only the requested Markdown
+files should be created (no packages/`__init__.py`). Output only the markdown files—no extra commentary.

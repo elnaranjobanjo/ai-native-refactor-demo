@@ -21,6 +21,7 @@ documentation_requirements:
     * `legacy.md` – describe the original module, known issues, and hidden constraints.
     * `refactored.md` – describe the new architecture, modules, data flow, and extension points.
     * `differences.md` – summarize key improvements, preserved behaviors, and new capabilities.
+  - Do not emit other files or packages; the documentation folder should contain only the requested markdown files.
   - Include clearly labeled sections (e.g., Overview, Key Logic, Risks).
   - Reference any relevant configs or dataclasses introduced during the refactor.
   - Keep explanations concise but specific enough for reviewers to understand intent.

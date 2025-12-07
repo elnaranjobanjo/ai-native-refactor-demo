@@ -17,7 +17,8 @@ modules:
       - How does the refactored design expose configurability?
 
 deliverables:
-  - For each module, create `refactored/documentation/business_logic/<name>.md`
+  - For each module, create a **single** Markdown file at
+    `refactored/documentation/business_logic/<name>.md` (no packages, no extra files)
     covering:
       * Overview of the business process.
       * Key rules & thresholds.
