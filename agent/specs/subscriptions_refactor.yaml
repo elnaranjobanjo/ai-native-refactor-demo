@@ -1,0 +1,32 @@
+name: subscriptions_refactor
+
+objective: >
+  Modularize the legacy subscription handler by separating plan pricing,
+  addon fees, coupon logic, and orchestration while preserving outputs.
+
+functional_requirements:
+  - Preserve exact totals from `legacy/subscriptions.py`.
+  - Remove duplicated conditions and hardcoded fees.
+  - Add type hints and dataclasses for configuration.
+  - Keep coupon handling and overage logic intact.
+
+architecture:
+  modules:
+    - plans.py
+    - addons.py
+    - coupons.py
+    - compute.py
+
+testing:
+  cases:
+    - input:
+        - type: plan
+          seats: 5
+          price_per_seat: 10
+          active_users: 6
+          overage_charge: 4
+        - type: addon
+          monthly_cost: 3
+        - type: coupon
+          amount: 5
+      expected: 64.5

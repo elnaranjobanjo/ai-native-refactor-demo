@@ -1,0 +1,64 @@
+name: billing_and_subscriptions_regression
+
+objective: >
+  Provide thorough regression coverage for the billing and subscriptions modules so
+  we can prove refactored implementations match legacy behavior.
+
+legacy_entry_points:
+  billing: legacy.billing.handle
+  subscriptions: legacy.subscriptions.handle_subscriptions
+
+future_entry_points:
+  billing: refactored/billing_refactor/compute.py::compute_bill
+  subscriptions: refactored/subscriptions_refactor/compute.py::compute_total
+
+test_requirements:
+  - Mirror the scenarios listed below using pytest.
+  - Structure tests so they can run against both the legacy and refactored entry points.
+  - Cover edge cases (zero values, overages, coupons, multiple discounts, unknown types).
+  - Document assumptions inside the plan before writing tests.
+
+test_cases:
+  billing:
+    - name: product_with_discount
+      items:
+        - {type: product, price: 20, qty: 2}
+        - {type: discount, value: 5}
+      expected_total: 50.02
+    - name: service_and_product_mix
+      items:
+        - {type: product, price: 15, qty: 1}
+        - {type: service, hours: 3, rate: 40}
+      expected_total: 146.4
+    - name: unknown_items_ignored
+      items:
+        - {type: product, price: 5, qty: 2}
+        - {type: mystery, foo: 1}
+      expected_total: 12.2
+  subscriptions:
+    - name: basic_plan_with_overage
+      items:
+        - type: plan
+          seats: 5
+          price_per_seat: 10
+          active_users: 6
+          overage_charge: 4
+        - type: coupon
+          amount: 5
+      expected_total: 57.5
+    - name: plan_addons_coupon
+      items:
+        - type: plan
+          seats: 3
+          price_per_seat: 8
+          active_users: 3
+        - type: addon
+          monthly_cost: 6.5
+        - type: coupon
+          amount: 2
+      expected_total: 45.0
+    - name: zero_floor_and_base_fee
+      items:
+        - type: coupon
+          amount: 99
+      expected_total: 12.5
