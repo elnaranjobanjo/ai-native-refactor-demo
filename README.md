@@ -1,7 +1,8 @@
 ai-native-refactor-demo/
 │
 ├── legacy/
-│   └── billing.py                 # original messy code
+│   ├── billing.py                 # original messy billing code
+│   └── subscriptions.py           # new messy subscription logic
 │
 ├── refactored/                    # AI-generated output goes here
 │   └── (populated by agent)

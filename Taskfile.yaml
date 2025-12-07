@@ -4,4 +4,9 @@ tasks:
   refactor:
     desc: Run the Codex refactor prompt
     cmds:
-      - codex exec - < ./prompts/refactor_prompt.md
+      - codex exec - < ./agent/prompts/refactor_prompt.md
+
+  testplan:
+    desc: Generate regression test plan and pytest suites
+    cmds:
+      - codex exec - < ./agent/prompts/testing_prompt.md
