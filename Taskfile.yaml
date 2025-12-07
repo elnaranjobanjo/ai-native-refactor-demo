@@ -1,0 +1,7 @@
+version: '3'
+
+tasks:
+  refactor:
+    desc: Run the Codex refactor prompt
+    cmds:
+      - codex exec - < ./prompts/refactor_prompt.md
