@@ -1,0 +1,25 @@
+name: business_logic_review
+
+modules:
+  - name: billing
+    legacy: legacy/billing.py
+    refactored: refactored/billing_refactor
+    questions:
+      - What business rules drive pricing, discounts, shipping, and tax?
+      - Which assumptions or thresholds are embedded (e.g., shipping threshold 100, tax 22%)?
+      - Where could future extensions plug in?
+  - name: subscriptions
+    legacy: legacy/subscriptions.py
+    refactored: refactored/subscriptions_refactor
+    questions:
+      - How do plans, addons, coupons, and base fees interact?
+      - What are the invariants (clamping to zero, default overage fee)?
+      - How does the refactored design expose configurability?
+
+deliverables:
+  - For each module, create `refactored/documentation/business_logic/<name>.md`
+    covering:
+      * Overview of the business process.
+      * Key rules & thresholds.
+      * Data flow between submodules.
+      * Extension points / open questions.

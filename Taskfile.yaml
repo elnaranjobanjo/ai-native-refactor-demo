@@ -8,6 +8,11 @@ tasks:
       - ./.venv/bin/pip install --upgrade pip
       - ./.venv/bin/pip install -r requirements.txt
 
+  biz-logic:
+    desc: Document business logic for legacy code before refactoring
+    cmds:
+      - codex exec - < ./agent/prompts/business_logic_prompt.md
+
   refactor:
     desc: Run the Codex refactor prompt
     cmds:
@@ -39,6 +44,7 @@ tasks:
   pipeline:
     desc: Run refactor, regenerate tests, execute pytest, and produce docs
     cmds:
+      - task biz-logic
       - task refactor
       - task testplan
       - task test

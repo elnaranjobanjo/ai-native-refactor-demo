@@ -4,7 +4,7 @@ Specification path: `./agent/specs/qa.yaml`
 
 Responsibilities:
 1. Inspect the latest refactored code, tests, and documentation under `./refactored/`.
-2. Run `task test` (or `python -m pytest refactored/tests`) to confirm the regression suite passes.
+2. Run `task test` (which sets up the venv and executes `pytest` under `.venv`) to confirm the regression suite passes.
 3. If tests fail or documentation is outdated:
    - Diagnose the root cause.
    - Update the relevant refactored modules, tests, or docs.
