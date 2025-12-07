@@ -1,6 +1,13 @@
 version: '3'
 
 tasks:
+  setup-env:
+    desc: Create Python virtual environment with testing dependencies
+    cmds:
+      - python3 -m venv .venv
+      - ./.venv/bin/pip install --upgrade pip
+      - ./.venv/bin/pip install -r requirements.txt
+
   refactor:
     desc: Run the Codex refactor prompt
     cmds:
@@ -10,3 +17,17 @@ tasks:
     desc: Generate regression test plan and pytest suites
     cmds:
       - codex exec - < ./agent/prompts/testing_prompt.md
+
+  test:
+    desc: Run pytest suite and capture output under refactored/
+    deps: [setup-env]
+    cmds:
+      - mkdir -p refactored/tests
+      - PYTHONPATH=. ./.venv/bin/python -m pytest refactored/tests -q | tee refactored/tests/test_results.txt
+
+  pipeline:
+    desc: Run refactor, regenerate tests, and execute pytest end-to-end
+    cmds:
+      - task refactor
+      - task testplan
+      - task test

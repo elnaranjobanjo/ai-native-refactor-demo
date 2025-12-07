@@ -17,6 +17,7 @@ test_requirements:
   - Structure tests so they can run against both the legacy and refactored entry points.
   - Cover edge cases (zero values, overages, coupons, multiple discounts, unknown types).
   - Document assumptions inside the plan before writing tests.
+  - Store the generated plan and pytest files under `refactored/tests/` so everything lives inside the refactored workspace.
 
 test_cases:
   billing:
