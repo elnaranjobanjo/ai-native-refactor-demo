@@ -1,0 +1,19 @@
+name: qa_verification
+
+objectives:
+  - Verify that the generated tests pass successfully; if they fail, diagnose the issue,
+    update the refactored code or tests as needed, and rerun the relevant pipeline steps.
+  - Confirm that documentation under `refactored/documentation/` matches the latest code (no stale module names or behaviors).
+  - Produce a short QA report summarizing checks and actions taken.
+
+process_requirements:
+  - Work from the outputs in `refactored/` (modules, tests, documentation, reasoning artifacts).
+  - When a change is needed (code, tests, or docs), regenerate the affected parts and re-run
+    `task test` to ensure regressions pass before proceeding.
+  - Continue iterating until tests pass and documentation is consistent.
+
+artifacts:
+  - Write a final QA summary to `refactored/reasoning_artifacts/qa_report.md` describing:
+    * Test run status (pass/fail, reruns).
+    * Files that were modified and why.
+    * Confirmation that documentation reflects the current refactor.

@@ -23,11 +23,24 @@ tasks:
     deps: [setup-env]
     cmds:
       - mkdir -p refactored/tests
-      - PYTHONPATH=. ./.venv/bin/python -m pytest refactored/tests -q | tee refactored/tests/test_results.txt
+      - mkdir -p refactored/reasoning_artifacts
+      - PYTHONPATH=. ./.venv/bin/python -m pytest refactored/tests -q | tee refactored/reasoning_artifacts/testing_results.txt
+
+  docs:
+    desc: Generate documentation for legacy vs refactored modules
+    cmds:
+      - codex exec - < ./agent/prompts/documentation_prompt.md
+
+  qa:
+    desc: Perform QA verification, rerun pipeline steps if needed, and generate report
+    cmds:
+      - codex exec - < ./agent/prompts/qa_prompt.md
 
   pipeline:
-    desc: Run refactor, regenerate tests, and execute pytest end-to-end
+    desc: Run refactor, regenerate tests, execute pytest, and produce docs
     cmds:
       - task refactor
       - task testplan
       - task test
+      - task docs
+      - task qa

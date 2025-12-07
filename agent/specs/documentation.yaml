@@ -1,0 +1,26 @@
+name: refactor_documentation
+
+targets:
+  - name: billing
+    legacy_path: legacy/billing.py
+    refactored_package: refactored/billing_refactor
+    focus:
+      - summarize original coupling/pain points
+      - describe new module boundaries and responsibilities
+      - call out behavioral parity checks
+  - name: subscriptions
+    legacy_path: legacy/subscriptions.py
+    refactored_package: refactored/subscriptions_refactor
+    focus:
+      - highlight pricing/addon/coupon responsibilities
+      - explain configuration improvements (dataclasses, base fees)
+      - document how clamping/base fee logic is preserved
+
+documentation_requirements:
+  - For each target, create three markdown files under `refactored/documentation/<name>/`:
+    * `legacy.md` – describe the original module, known issues, and hidden constraints.
+    * `refactored.md` – describe the new architecture, modules, data flow, and extension points.
+    * `differences.md` – summarize key improvements, preserved behaviors, and new capabilities.
+  - Include clearly labeled sections (e.g., Overview, Key Logic, Risks).
+  - Reference any relevant configs or dataclasses introduced during the refactor.
+  - Keep explanations concise but specific enough for reviewers to understand intent.
